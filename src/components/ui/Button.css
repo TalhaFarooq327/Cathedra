@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════════════════
+   Button Component
+   ═══════════════════════════════════════════════════════════ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+  white-space: nowrap;
+}
+
+/* ─── Sizes ───────────────────────────────────────────── */
+.btn--sm {
+  font-size: var(--text-xs);
+  padding: 0.625rem 1.25rem;
+}
+
+.btn--md {
+  font-size: var(--text-sm);
+  padding: 0.875rem 2rem;
+}
+
+.btn--lg {
+  font-size: var(--text-sm);
+  padding: 1.125rem 2.5rem;
+}
+
+/* ─── Primary ─────────────────────────────────────────── */
+.btn--primary {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-white);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+/* ─── Secondary ───────────────────────────────────────── */
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn--secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ─── Ghost ───────────────────────────────────────────── */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-white);
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
+}
+
+.btn--ghost:hover {
+  color: var(--color-accent);
+}
+
+.btn--ghost-dark {
+  background: transparent;
+  color: var(--color-near-black);
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
+  font-weight: 600;
+}
+
+.btn--ghost-dark:hover {
+  color: var(--color-accent-dark);
+}
+
+/* ─── Accent ──────────────────────────────────────────── */
+.btn--accent {
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  border: 1px solid var(--color-accent);
+}
+
+.btn--accent:hover {
+  background-color: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+}
+
+/* ─── Dark Button (for Light Sections) ────────────────── */
+.btn--dark {
+  background-color: var(--color-near-black);
+  color: var(--color-warm-white);
+  border: 1px solid var(--color-near-black);
+}
+
+.btn--dark:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-black);
+}
+
+.btn--outline-dark {
+  background-color: transparent;
+  color: var(--color-near-black);
+  border: 1px solid rgba(17, 17, 17, 0.25);
+}
+
+.btn--outline-dark:hover {
+  border-color: var(--color-accent-dark);
+  color: var(--color-accent-dark);
+  background-color: rgba(200, 169, 126, 0.08);
+}
+
+/* ─── Arrow ───────────────────────────────────────────── */
+.btn__arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+  font-size: 1em;
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ─── Text ────────────────────────────────────────────── */
+.btn__text {
+  position: relative;
+}

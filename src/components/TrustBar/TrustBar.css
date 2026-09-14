@@ -1,0 +1,68 @@
+/* ═══════════════════════════════════════════════════════════
+   Trust Bar
+   ═══════════════════════════════════════════════════════════ */
+
+.trust-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--color-near-black);
+  padding: 2rem 0;
+}
+
+.trust-bar__inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 0 2.5rem;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+}
+
+.trust-bar__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.trust-bar__icon {
+  font-size: var(--text-lg);
+  color: var(--color-accent);
+  width: 2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.trust-bar__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.trust-bar__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: 0.02em;
+}
+
+.trust-bar__sublabel {
+  font-size: var(--text-xs);
+  color: var(--color-gray);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .trust-bar__inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 var(--container-padding);
+  }
+
+  .trust-bar__item {
+    justify-content: flex-start;
+    padding-left: 1rem;
+  }
+}

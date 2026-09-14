@@ -1,0 +1,81 @@
+import { BOOKSY_BOOKING_URL, ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, INSTAGRAM_HANDLE } from '../../config';
+import Button from '../ui/Button';
+import './Footer.css';
+
+const NAV_LINKS = [
+  { label: 'Services', href: '#services' },
+  { label: 'About', href: '#about' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'Location', href: '#location' },
+];
+
+export default function Footer() {
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer__grid">
+          {/* Brand */}
+          <div className="footer__brand">
+            <a href="#" className="footer__logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+              CATHEDRA
+            </a>
+            <div className="footer__address">
+              <p>{ADDRESS}</p>
+              <p>{CITY_STATE_ZIP}</p>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="footer__nav">
+            <h4 className="footer__nav-title">Navigate</h4>
+            <nav>
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="footer__link"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* Connect */}
+          <div className="footer__connect">
+            <h4 className="footer__nav-title">Connect</h4>
+            <a href={INSTAGRAM_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+            <div className="footer__book">
+              <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="sm">
+                Book Now
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="footer__bottom">
+          <p className="footer__copyright">
+            © {new Date().getFullYear()} Cathedra NYC. All rights reserved.
+          </p>
+          <div className="footer__legal">
+            <a href="#" className="footer__legal-link">Privacy Policy</a>
+            <a href="#" className="footer__legal-link">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

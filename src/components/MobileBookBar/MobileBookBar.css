@@ -1,0 +1,47 @@
+/* ═══════════════════════════════════════════════════════════
+   Mobile Book Bar
+   ═══════════════════════════════════════════════════════════ */
+
+.mobile-book-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-mobile-bar);
+  padding: 0.75rem 1rem;
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(200, 169, 126, 0.2);
+}
+
+.mobile-book-bar__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-accent);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.mobile-book-bar__btn:hover {
+  background: var(--color-accent-light);
+  color: var(--color-black);
+}
+
+/* Only show on mobile */
+@media (max-width: 768px) {
+  .mobile-book-bar {
+    display: block;
+  }
+}

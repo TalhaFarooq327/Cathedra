@@ -1,0 +1,73 @@
+/* ═══════════════════════════════════════════════════════════
+   Social Section (Warm Editorial)
+   ═══════════════════════════════════════════════════════════ */
+
+.social {
+  background-color: var(--color-warm-white);
+  color: var(--color-near-black);
+}
+
+.social__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+}
+
+.social__item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: block;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.social__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social__item:hover img {
+  transform: scale(1.08);
+}
+
+.social__item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social__item:hover .social__item-overlay {
+  opacity: 1;
+}
+
+.social__item-icon {
+  font-size: var(--text-xl);
+  color: var(--color-white);
+}
+
+.social__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-3xl);
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .social__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .social__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
