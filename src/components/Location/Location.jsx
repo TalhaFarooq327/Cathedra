@@ -49,7 +49,6 @@ export default function Location() {
               <h3 className="location__label">Studio Address</h3>
               <p className="location__address-primary">{ADDRESS}</p>
               <p className="location__address-secondary">{CITY_STATE_ZIP}</p>
-              <p className="location__neighborhood">{NEIGHBORHOOD}</p>
               <div className="location__address-cta">
                 <Button href={GOOGLE_MAPS_URL} variant="ghost" size="sm">
                   Get Directions →
@@ -69,7 +68,21 @@ export default function Location() {
               </div>
             </div>
 
-
+            <div className="location__contact">
+              <h3 className="location__label">Direct Contact</h3>
+              <p>
+                <strong>Phone: </strong>
+                <a href={`tel:${PHONE.replace(/[^0-9]/g, '')}`} style={{ color: 'inherit', textDecoration: 'underline' }}>
+                  {PHONE}
+                </a>
+              </p>
+              <p>
+                <strong>Email: </strong>
+                <a href={`mailto:${EMAIL}`} style={{ color: 'inherit', textDecoration: 'underline' }}>
+                  {EMAIL}
+                </a>
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>

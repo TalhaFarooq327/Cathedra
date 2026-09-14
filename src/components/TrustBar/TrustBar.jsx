@@ -13,6 +13,11 @@ const items = [
     icon: '✦',
   },
   {
+    label: '$15 Off 2nd Visit',
+    sublabel: 'Automatic Booksy reward',
+    icon: '★',
+  },
+  {
     label: 'Book Online',
     sublabel: 'Powered by Booksy',
     icon: '→',

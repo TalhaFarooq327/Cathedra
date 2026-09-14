@@ -4,6 +4,7 @@ import SectionHeading from '../ui/SectionHeading';
 import ServiceCard from '../ServiceCard/ServiceCard';
 import Button from '../ui/Button';
 import { FEATURED_SERVICES, SERVICE_CATEGORIES, ALL_SERVICES } from '../../data/services';
+import { BOOKSY_BOOKING_URL } from '../../config';
 import './FeaturedServices.css';
 
 export default function FeaturedServices() {
@@ -35,6 +36,30 @@ export default function FeaturedServices() {
             />
           ))}
         </div>
+
+        {/* Loyalty Privilege Banner */}
+        <motion.div
+          className="featured-services__loyalty-banner"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="loyalty-banner__badge">
+            <span className="loyalty-banner__icon">✦</span> RETURNING CLIENT PRIVILEGE
+          </div>
+          <div className="loyalty-banner__content">
+            <h3 className="loyalty-banner__title">$15 OFF Your 2nd Visit</h3>
+            <p className="loyalty-banner__desc">
+              We reward gentleman loyalty. <strong>New clients</strong> automatically earn a <strong>$15 discount</strong> on their 2nd visit, applied seamlessly at checkout in Booksy.
+            </p>
+          </div>
+          <div className="loyalty-banner__action">
+            <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="md">
+              Book Appointment
+            </Button>
+          </div>
+        </motion.div>
 
         {/* Full Categorized Menu Section */}
         <div className="featured-services__menu-container">

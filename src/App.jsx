@@ -12,6 +12,7 @@ import SocialSection from './components/SocialSection/SocialSection';
 import FinalCTA from './components/FinalCTA/FinalCTA';
 import Footer from './components/Footer/Footer';
 import MobileBookBar from './components/MobileBookBar/MobileBookBar';
+import BooksyModal from './components/BooksyModal/BooksyModal';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
       </main>
       <Footer />
       <MobileBookBar />
+      <BooksyModal />
     </div>
   );
 }

@@ -31,7 +31,73 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ─── Loyalty Banner ──────────────────────────────────── */
+.featured-services__loyalty-banner {
+  background: var(--color-near-black, #111111);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-services__loyalty-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-gold, #c5a059);
+}
+
+.loyalty-banner__badge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold, #c5a059);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.loyalty-banner__icon {
+  font-size: 0.85rem;
+}
+
+.loyalty-banner__title {
+  font-family: var(--font-heading, serif);
+  font-size: var(--text-2xl);
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.loyalty-banner__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-light-gray, #a0a0a0);
+  line-height: 1.6;
+  max-width: 580px;
+}
+
+.loyalty-banner__desc strong {
+  color: #ffffff;
+}
+
+.loyalty-banner__action {
+  flex-shrink: 0;
 }
 
 /* ─── Complete Menu Container (Light Editorial Card) ─── */

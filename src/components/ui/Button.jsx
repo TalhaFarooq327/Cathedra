@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { openBooksyWidget } from '../../utils/booksy';
 import './Button.css';
 
 export default function Button({
@@ -12,6 +13,17 @@ export default function Button({
   ...props
 }) {
   const classes = `btn btn--${variant} btn--${size} ${className}`.trim();
+
+  const isBooksy = href && href.includes('booksy');
+
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+    }
+    if (isBooksy) {
+      openBooksyWidget(e);
+    }
+  };
 
   const content = (
     <>
@@ -34,8 +46,9 @@ export default function Button({
       <motion.a
         href={href}
         className={classes}
-        target={href.startsWith('http') ? '_blank' : undefined}
-        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        onClick={handleClick}
+        target={isBooksy ? '_self' : (href.startsWith('http') ? '_blank' : undefined)}
+        rel={isBooksy ? undefined : (href.startsWith('http') ? 'noopener noreferrer' : undefined)}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2 }}
@@ -49,7 +62,7 @@ export default function Button({
   return (
     <motion.button
       className={classes}
-      onClick={onClick}
+      onClick={handleClick}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}

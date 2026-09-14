@@ -1,0 +1,142 @@
+.booksy-modal-wrapper {
+  position: relative;
+  z-index: 999999;
+}
+
+.booksy-modal-wrapper.is-closed {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.booksy-modal-wrapper.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.booksy-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.booksy-modal-container {
+  width: 100%;
+  max-width: 860px;
+  height: 88vh;
+  max-height: 750px;
+  background-color: var(--color-near-black, #111111);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+  overscroll-behavior: contain;
+  transform: scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.booksy-modal-wrapper.is-open .booksy-modal-container {
+  transform: scale(1);
+}
+
+.booksy-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background-color: #0c0c0c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.booksy-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading, serif);
+  font-size: 1.125rem;
+  letter-spacing: 0.1em;
+  color: var(--color-gold, #c5a059);
+  font-weight: 600;
+}
+
+.booksy-modal-brand {
+  color: #c5a059;
+}
+
+.booksy-modal-subtitle {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.8rem;
+  color: var(--color-light-gray, #a0a0a0);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.booksy-modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d0d0d0;
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.booksy-modal-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.booksy-modal-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* ─── Iframe Styling ────────────────────────────────────── */
+.booksy-modal-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .booksy-modal-backdrop {
+    padding: 0;
+  }
+
+  .booksy-modal-container {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .booksy-modal-subtitle {
+    display: none;
+  }
+}
+

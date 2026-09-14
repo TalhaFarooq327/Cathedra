@@ -1,4 +1,4 @@
-import { BOOKSY_BOOKING_URL, ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, INSTAGRAM_HANDLE } from '../../config';
+import { BOOKSY_BOOKING_URL, ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, PHONE, EMAIL } from '../../config';
 import Button from '../ui/Button';
 import './Footer.css';
 
@@ -53,9 +53,15 @@ export default function Footer() {
 
           {/* Connect */}
           <div className="footer__connect">
-            <h4 className="footer__nav-title">Connect</h4>
+            <h4 className="footer__nav-title">Connect & Contact</h4>
+            <a href={`tel:${PHONE.replace(/[^0-9]/g, '')}`} className="footer__link">
+              {PHONE}
+            </a>
+            <a href={`mailto:${EMAIL}`} className="footer__link">
+              {EMAIL}
+            </a>
             <a href={INSTAGRAM_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
-              Instagram
+              Instagram (@cathedra.nyc)
             </a>
             <div className="footer__book">
               <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="sm">

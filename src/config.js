@@ -6,8 +6,8 @@
  */
 
 // ─── Booking ─────────────────────────────────────────────
-// Replace with actual Booksy booking URL once provided
-export const BOOKSY_BOOKING_URL = '#booksy-placeholder';
+export const BOOKSY_BOOKING_URL = 'https://booksy.com/en-us/dl/show-business/231737';
+export const BOOKSY_WIDGET_SCRIPT = 'https://booksy.com/widget/code.js?id=231737&country=us&lang=en';
 
 // Service-specific Booksy URLs (if deep-linking is supported)
 // Otherwise, all fall back to BOOKSY_BOOKING_URL
@@ -30,28 +30,23 @@ export const CITY_STATE_ZIP = 'New York, NY 10013';
 export const FULL_ADDRESS = `${ADDRESS}, ${CITY_STATE_ZIP}`;
 export const NEIGHBORHOOD = 'New York City';
 export const GOOGLE_MAPS_URL = 'https://maps.google.com/?q=131+Varick+St+Suite+938+New+York+NY+10013';
-export const GOOGLE_MAPS_EMBED_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.0!2d-74.0055!3d40.7267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s131+Varick+St%2C+New+York%2C+NY+10013!5e0!3m2!1sen!2sus!4v1';
+export const GOOGLE_MAPS_EMBED_URL = 'https://maps.google.com/maps?q=131+Varick+St+Suite+938+New+York+NY+10013&t=&z=16&ie=UTF8&iwloc=&output=embed';
 
 // ─── Social ──────────────────────────────────────────────
-// Replace with actual Instagram URL
-export const INSTAGRAM_URL = '#instagram-placeholder';
+export const INSTAGRAM_URL = 'https://www.instagram.com/cathedra.nyc/';
 export const INSTAGRAM_HANDLE = '@cathedra.nyc';
 
 // ─── Contact ─────────────────────────────────────────────
-// Replace with actual contact info
-export const PHONE = '(212) 000-0000'; // Placeholder
-export const EMAIL = 'hello@cathedranyc.com'; // Placeholder
+export const PHONE = '(347) 672-9171';
+export const PHONE_RAW = '3476729171';
+export const EMAIL = 'valjean@cathedra.nyc';
 
 // ─── Business Hours ──────────────────────────────────────
-// Replace with actual hours
 export const HOURS = [
-  { day: 'Monday', hours: '10:00 AM – 8:00 PM' },
   { day: 'Tuesday', hours: '10:00 AM – 8:00 PM' },
   { day: 'Wednesday', hours: '10:00 AM – 8:00 PM' },
   { day: 'Thursday', hours: '10:00 AM – 8:00 PM' },
   { day: 'Friday', hours: '10:00 AM – 8:00 PM' },
-  { day: 'Saturday', hours: '9:00 AM – 6:00 PM' },
-  { day: 'Sunday', hours: 'Closed' },
 ];
 
 // ─── Brand ───────────────────────────────────────────────
