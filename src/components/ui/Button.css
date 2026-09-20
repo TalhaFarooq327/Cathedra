@@ -135,4 +135,14 @@
 /* ─── Text ────────────────────────────────────────────── */
 .btn__text {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1;
+}
+
+.btn svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
 }

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
-import { ADDRESS, CITY_STATE_ZIP, GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED_URL, HOURS, PHONE, EMAIL, NEIGHBORHOOD } from '../../config';
+import { ADDRESS, CITY_STATE_ZIP, GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED_URL, HOURS, PHONE, EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE, FACEBOOK_URL, FACEBOOK_HANDLE } from '../../config';
 import './Location.css';
 
 export default function Location() {
@@ -69,7 +69,7 @@ export default function Location() {
             </div>
 
             <div className="location__contact">
-              <h3 className="location__label">Direct Contact</h3>
+              <h3 className="location__label">Direct Contact & Social</h3>
               <p>
                 <strong>Phone: </strong>
                 <a href={`tel:${PHONE.replace(/[^0-9]/g, '')}`} style={{ color: 'inherit', textDecoration: 'underline' }}>
@@ -82,6 +82,7 @@ export default function Location() {
                   {EMAIL}
                 </a>
               </p>
+
             </div>
           </motion.div>
         </div>

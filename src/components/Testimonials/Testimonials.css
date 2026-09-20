@@ -19,20 +19,26 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
 }
 
-.testimonials__track {
+.testimonials__viewport {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 180px;
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  align-items: center;
+  justify-content: center;
 }
 
 /* ─── Individual Testimonial ──────────────────────────── */
 .testimonial {
-  flex: 0 0 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 1.5rem;
   padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .testimonial__stars {

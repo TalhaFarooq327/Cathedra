@@ -32,7 +32,7 @@ export default function Experience() {
         <SectionHeading
           overline="The Process"
           title="Your Experience"
-          subtitle="From booking to walking out — every step is crafted."
+          subtitle="From booking to walking out every step is crafted."
         />
 
         <div className="experience__grid">

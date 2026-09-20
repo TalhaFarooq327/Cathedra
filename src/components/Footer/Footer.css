@@ -18,18 +18,26 @@
 
 /* ─── Brand ───────────────────────────────────────────── */
 .footer__logo {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  color: var(--color-white);
+  display: inline-block;
   text-decoration: none;
-  display: block;
   margin-bottom: 1.5rem;
+  transition: transform var(--transition-fast);
 }
 
 .footer__logo:hover {
-  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.footer__logo-img {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(200, 169, 126, 0.2));
+  transition: filter var(--transition-fast);
+}
+
+.footer__logo:hover .footer__logo-img {
+  filter: drop-shadow(0 0 25px rgba(226, 196, 153, 0.4));
 }
 
 .footer__address p {

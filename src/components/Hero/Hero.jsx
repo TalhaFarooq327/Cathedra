@@ -3,6 +3,7 @@ import { BOOKSY_BOOKING_URL } from '../../config';
 import Button from '../ui/Button';
 import ScrollIndicator from '../ui/ScrollIndicator';
 import heroBg from '../../assets/images/hero-bg.png';
+import logoGold from '../../assets/images/logo-gold-bright.png';
 import './Hero.css';
 
 const container = {
@@ -68,6 +69,10 @@ export default function Hero() {
         initial="hidden"
         animate="show"
       >
+        <motion.div className="hero__logo-wrapper" variants={fadeUp}>
+          <img src={logoGold} alt="Cathedra NYC Official Logo" className="hero__logo-badge" />
+        </motion.div>
+
         <motion.span className="hero__brand overline" variants={fadeUp}>
           Cathedra NYC
         </motion.span>

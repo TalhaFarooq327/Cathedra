@@ -47,7 +47,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
+}
+
+/* ─── Hero Logo Badge ─────────────────────────────────── */
+.hero__logo-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.hero__logo-badge {
+  width: 140px;
+  max-width: 35vw;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(226, 196, 153, 0.35)) drop-shadow(0 0 50px rgba(200, 169, 126, 0.15));
+  transition: transform 0.6s var(--ease-out);
+}
+
+.hero__logo-badge:hover {
+  transform: scale(1.04);
 }
 
 .hero__brand {

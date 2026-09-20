@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import './Testimonials.css';
 
@@ -28,6 +28,30 @@ const REVIEWS = [
     name: 'Harrison B. — NYC Resident',
     rating: 5,
   },
+  {
+    id: 5,
+    text: 'Finding a master barber who understands classic razor work and modern texture is rare. Cathedra delivers perfection on every single visit.',
+    name: 'Alexander M. — Private Equity Principal',
+    rating: 5,
+  },
+  {
+    id: 6,
+    text: 'The attention to detail during the beard sculpt ritual is out of this world. Clean lines, hot towels, and an ambience of refined luxury.',
+    name: 'Christian T. — Senior Architect',
+    rating: 5,
+  },
+  {
+    id: 7,
+    text: 'Suite 938 provides a completely tailored, private experience. No rush, no noise — just immaculate grooming by true masters of the craft.',
+    name: 'Dominic S. — Venture Partner',
+    rating: 5,
+  },
+  {
+    id: 8,
+    text: 'Seamless booking, top-tier hospitality, and the sharpest haircut in Soho/Tribeca. I recommend Cathedra to all my colleagues.',
+    name: 'Sebastian P. — Creative Director',
+    rating: 5,
+  },
 ];
 
 function Stars({ count }) {
@@ -40,16 +64,38 @@ function Stars({ count }) {
   );
 }
 
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 50 : -50,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction) => ({
+    x: direction < 0 ? 50 : -50,
+    opacity: 0,
+  }),
+};
+
 export default function Testimonials() {
-  const [current, setCurrent] = useState(0);
-  const containerRef = useRef(null);
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  const current = ((page % REVIEWS.length) + REVIEWS.length) % REVIEWS.length;
 
   const handlePrev = () => {
-    setCurrent((prev) => (prev === 0 ? REVIEWS.length - 1 : prev - 1));
+    setPage([page - 1, -1]);
   };
 
   const handleNext = () => {
-    setCurrent((prev) => (prev === REVIEWS.length - 1 ? 0 : prev + 1));
+    setPage([page + 1, 1]);
+  };
+
+  const handleDotClick = (index) => {
+    const dir = index > current ? 1 : -1;
+    const diff = index - current;
+    setPage([page + diff, dir]);
   };
 
   return (
@@ -62,20 +108,29 @@ export default function Testimonials() {
           light={true}
         />
 
-        <div className="testimonials__carousel" ref={containerRef}>
-          <div
-            className="testimonials__track"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {REVIEWS.map((review) => (
-              <div key={review.id} className="testimonial">
-                <Stars count={review.rating} />
+        <div className="testimonials__carousel">
+          <div className="testimonials__viewport">
+            <AnimatePresence mode="wait" custom={direction} initial={false}>
+              <motion.div
+                key={page}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: 'spring', stiffness: 350, damping: 32 },
+                  opacity: { duration: 0.2 },
+                }}
+                className="testimonial"
+              >
+                <Stars count={REVIEWS[current].rating} />
                 <blockquote className="testimonial__text">
-                  &ldquo;{review.text}&rdquo;
+                  &ldquo;{REVIEWS[current].text}&rdquo;
                 </blockquote>
-                <cite className="testimonial__name">{review.name}</cite>
-              </div>
-            ))}
+                <cite className="testimonial__name">{REVIEWS[current].name}</cite>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Navigation */}
@@ -92,7 +147,7 @@ export default function Testimonials() {
                 <button
                   key={i}
                   className={`testimonials__dot ${i === current ? 'testimonials__dot--active' : ''}`}
-                  onClick={() => setCurrent(i)}
+                  onClick={() => handleDotClick(i)}
                   aria-label={`Go to review ${i + 1}`}
                 />
               ))}
@@ -110,3 +165,4 @@ export default function Testimonials() {
     </section>
   );
 }
+

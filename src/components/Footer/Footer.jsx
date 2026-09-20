@@ -1,5 +1,6 @@
-import { BOOKSY_BOOKING_URL, ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, PHONE, EMAIL } from '../../config';
+import { BOOKSY_BOOKING_URL, ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, FACEBOOK_URL, PHONE, EMAIL } from '../../config';
 import Button from '../ui/Button';
+import logoGold from '../../assets/images/logo-gold-bright.png';
 import './Footer.css';
 
 const NAV_LINKS = [
@@ -26,7 +27,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer__brand">
             <a href="#" className="footer__logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-              CATHEDRA
+              <img src={logoGold} alt="Cathedra NYC Official Logo" className="footer__logo-img" />
             </a>
             <div className="footer__address">
               <p>{ADDRESS}</p>
@@ -61,7 +62,10 @@ export default function Footer() {
               {EMAIL}
             </a>
             <a href={INSTAGRAM_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
-              Instagram (@cathedra.nyc)
+              Instagram (@cathedranyc)
+            </a>
+            <a href={FACEBOOK_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
+              Facebook (Cathedra NYC)
             </a>
             <div className="footer__book">
               <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="sm">

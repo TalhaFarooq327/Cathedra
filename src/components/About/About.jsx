@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
-import aboutImg from '../../assets/images/about-editorial.png';
+import philosophyImg from '../../assets/images/philosophy-craft.jpg';
 import './About.css';
 
 export default function About() {
@@ -18,8 +18,8 @@ export default function About() {
           >
             <div className="about__image-container">
               <img
-                src={aboutImg}
-                alt="Master barber performing a precision haircut at Cathedra NYC"
+                src={philosophyImg}
+                alt="Master barber performing a precision haircut ritual at Cathedra NYC"
                 className="about__image"
                 loading="lazy"
               />
@@ -40,9 +40,7 @@ export default function About() {
 
             <div className="about__text">
               <p>
-                Cathedra is a private grooming sanctuary in the heart of New York City.
-                We believe that grooming is an essential ritual — one that should
-                be executed with surgical precision, uncompromising attention to detail, and a deep respect for individual style.
+                Cathedra is a private grooming sanctuary in the heart of New York City. We believe that grooming is an essential ritual that should be executed with surgical precision, uncompromising attention to detail, and a deep respect for individual style.
               </p>
               <p>
                 Located in suite 938 on Varick Street, our NYC studio offers an intimate environment designed for modern gentlemen who demand excellence. From tailored scissor work to traditional hot-towel beard architecture, every session is crafted exclusively for you.

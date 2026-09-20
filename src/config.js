@@ -33,8 +33,32 @@ export const GOOGLE_MAPS_URL = 'https://maps.google.com/?q=131+Varick+St+Suite+9
 export const GOOGLE_MAPS_EMBED_URL = 'https://maps.google.com/maps?q=131+Varick+St+Suite+938+New+York+NY+10013&t=&z=16&ie=UTF8&iwloc=&output=embed';
 
 // ─── Social ──────────────────────────────────────────────
-export const INSTAGRAM_URL = 'https://www.instagram.com/cathedra.nyc/';
-export const INSTAGRAM_HANDLE = '@cathedra.nyc';
+export const INSTAGRAM_URL = 'https://www.instagram.com/cathedranyc/';
+export const INSTAGRAM_HANDLE = '@cathedranyc';
+
+export const FACEBOOK_URL = 'https://www.facebook.com/CathedraNYC/';
+export const FACEBOOK_HANDLE = 'Cathedra NYC';
+
+/**
+ * Free Instagram Post Embeds (Zero Paid APIs Needed!)
+ * 
+ * Paste your public Instagram post IDs below to embed real posts on your site for FREE.
+ * Example post URL: https://www.instagram.com/p/C123456789/ -> ID is 'C123456789'
+ * 
+ * If left empty, the site displays the high-resolution editorial photography gallery.
+ */
+export const INSTAGRAM_POST_IDS = [
+  'DdX3tuSv-Jv',
+  'DdR9BktSHR_',
+  'DdHleGhSWju',
+  'Dce5O0Xv2ra',
+  'C2FyIUoLpXQ',
+  'Dcjui0_yo0l',
+
+  // Add post IDs here when ready, e.g.:
+  // 'C123456789',
+  // 'D987654321',
+];
 
 // ─── Contact ─────────────────────────────────────────────
 export const PHONE = '(347) 672-9171';

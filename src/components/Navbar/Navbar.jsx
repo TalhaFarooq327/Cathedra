@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
 import { BOOKSY_BOOKING_URL } from '../../config';
+import logoMark from '../../assets/images/logo-mark-gold.png';
 import Button from '../ui/Button';
 import './Navbar.css';
 
@@ -50,6 +51,7 @@ export default function Navbar() {
         <div className="navbar__inner container--wide">
           {/* Logo */}
           <a href="#" className="navbar__logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+            <img src={logoMark} alt="Cathedra NYC Logo Crest" className="navbar__logo-icon" />
             <span className="navbar__logo-text">CATHEDRA</span>
           </a>
 
