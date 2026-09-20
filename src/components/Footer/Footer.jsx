@@ -1,5 +1,4 @@
-import { BOOKSY_BOOKING_URL, ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, FACEBOOK_URL, PHONE, EMAIL } from '../../config';
-import Button from '../ui/Button';
+import { ADDRESS, CITY_STATE_ZIP, INSTAGRAM_URL, FACEBOOK_URL, PHONE, EMAIL } from '../../config';
 import logoGold from '../../assets/images/logo-gold-bright.png';
 import './Footer.css';
 
@@ -67,13 +66,6 @@ export default function Footer() {
             <a href={FACEBOOK_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
               Facebook
             </a>
-          </div>
-
-          {/* Book CTA */}
-          <div className="footer__book">
-            <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="sm">
-              Book Now
-            </Button>
           </div>
         </div>
 

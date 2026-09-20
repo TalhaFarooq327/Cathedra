@@ -180,14 +180,15 @@
   .social__embed-card {
     flex: 0 0 300px;
     width: 300px;
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 415px;
+    min-height: 415px;
+    max-height: 415px;
   }
 
   .social__embed-iframe {
-    height: 540px;
-    margin-bottom: -60px;
+    height: 480px;
+    margin-top: -10px;
+    margin-bottom: -65px;
   }
 }
 
@@ -195,9 +196,14 @@
   .social__embed-card {
     flex: 0 0 280px;
     width: 280px;
+    height: 390px;
+    min-height: 390px;
+    max-height: 390px;
+  }
+
+  .social__embed-iframe {
     height: 450px;
-    min-height: 450px;
-    max-height: 450px;
+    margin-bottom: -60px;
   }
 
   .social__actions {

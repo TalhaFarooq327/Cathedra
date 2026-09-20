@@ -82,11 +82,6 @@
   gap: 0.75rem;
 }
 
-.footer__book {
-  grid-column: 3;
-  margin-top: 0.5rem;
-}
-
 /* ─── Bottom ──────────────────────────────────────────── */
 .footer__bottom {
   display: flex;
@@ -145,20 +140,6 @@
   .footer__nav,
   .footer__connect {
     text-align: left;
-  }
-
-  .footer__book {
-    grid-column: span 2;
-    margin-top: 1.25rem;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .footer__book .btn {
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
   }
 
   .footer__bottom {
