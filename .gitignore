@@ -1,3 +1,20 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Production Builds
+dist
+dist-ssr
+build
+*.out
+
+# Environment & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Logs
 logs
 *.log
@@ -7,18 +24,30 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# OS & System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Editor directories and files
+# IDEs & Code Editors
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+
+# Temporary Files & Local Caches
+.eslintcache
+.stylelintcache
+.vite
+.next
+.gemini

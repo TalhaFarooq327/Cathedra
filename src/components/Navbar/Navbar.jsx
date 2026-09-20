@@ -7,10 +7,11 @@ import Button from '../ui/Button';
 import './Navbar.css';
 
 const NAV_LINKS = [
+  { label: 'About', href: '#about' },
+
   { label: 'Services', href: '#services' },
   { label: 'Experience', href: '#experience' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#about' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Location', href: '#location' },
 ];
@@ -18,6 +19,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const { isScrolled } = useScrollPosition();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -30,6 +32,32 @@ export default function Navbar() {
       document.body.style.overflow = '';
     };
   }, [isMobileOpen]);
+
+  // ScrollSpy Active Link Tracker
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      const sections = NAV_LINKS.map((link) => link.href.substring(1));
+
+      let currentSection = '';
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentSection = `#${sectionId}`;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
@@ -61,7 +89,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="navbar__link"
+                className={`navbar__link ${activeSection === link.href ? 'navbar__link--active' : ''}`}
                 onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
@@ -97,31 +125,46 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
           >
+            <div className="mobile-menu__top">
+              <div className="mobile-menu__logo">
+                <img src={logoMark} alt="Cathedra NYC Logo Crest" className="mobile-menu__logo-img" />
+                <span className="mobile-menu__logo-text">CATHEDRA</span>
+              </div>
+              <button
+                className="mobile-menu__close"
+                onClick={() => setIsMobileOpen(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+
             <motion.div
               className="mobile-menu__content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
             >
               <nav className="mobile-menu__nav">
                 {NAV_LINKS.map((link, i) => (
                   <motion.a
                     key={link.href}
                     href={link.href}
-                    className="mobile-menu__link"
+                    className={`mobile-menu__link ${activeSection === link.href ? 'mobile-menu__link--active' : ''}`}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
+                    exit={{ opacity: 0, y: -10 }}
                     transition={{
-                      duration: 0.5,
-                      delay: 0.15 + i * 0.06,
+                      duration: 0.4,
+                      delay: 0.1 + i * 0.05,
                       ease: [0.16, 1, 0.3, 1],
                     }}
                   >
+                    {activeSection === link.href && <span className="mobile-menu__link-star">✦ </span>}
                     {link.label}
                   </motion.a>
                 ))}
@@ -129,14 +172,14 @@ export default function Navbar() {
 
               <motion.div
                 className="mobile-menu__cta"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
               >
                 <Button
                   href={BOOKSY_BOOKING_URL}
-                  variant="accent"
-                  size="lg"
+                  variant="primary"
+                  size="md"
                   onClick={() => setIsMobileOpen(false)}
                 >
                   Book Appointment
@@ -147,10 +190,12 @@ export default function Navbar() {
                 className="mobile-menu__info"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.5 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
               >
-                <p>131 Varick St, Suite 938</p>
-                <p>New York, NY 10013</p>
+                <p className="mobile-menu__address">131 Varick St, Suite 938 · New York</p>
+                <a href="tel:3476729171" className="mobile-menu__phone">
+                  (347) 672-9171
+                </a>
               </motion.div>
             </motion.div>
           </motion.div>

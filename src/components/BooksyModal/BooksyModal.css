@@ -7,48 +7,48 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .booksy-modal-wrapper.is-open {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .booksy-modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
   overscroll-behavior: contain;
-  touch-action: none;
 }
 
 .booksy-modal-container {
   width: 100%;
   max-width: 860px;
   height: 88vh;
-  max-height: 750px;
+  height: 88dvh;
+  max-height: 780px;
   background-color: var(--color-near-black, #111111);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.95);
   overscroll-behavior: contain;
-  transform: scale(0.98);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.96);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .booksy-modal-wrapper.is-open .booksy-modal-container {
@@ -89,21 +89,26 @@
 }
 
 .booksy-modal-close {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #d0d0d0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   font-family: var(--font-body, sans-serif);
   font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
   transition: all 0.2s ease;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .booksy-modal-close:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  background: var(--color-gold, #c5a059);
+  color: #0c0c0c;
+  border-color: var(--color-gold, #c5a059);
 }
 
 .booksy-modal-body {
@@ -113,6 +118,7 @@
   height: 100%;
   background-color: #ffffff;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ─── Iframe Styling ────────────────────────────────────── */
@@ -123,20 +129,36 @@
   display: block;
 }
 
-@media (max-width: 640px) {
+/* ─── Mobile Responsiveness ────────────────────────────── */
+@media (max-width: 768px) {
   .booksy-modal-backdrop {
     padding: 0;
   }
 
   .booksy-modal-container {
+    width: 100vw;
     height: 100vh;
-    max-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     border-radius: 0;
     border: none;
+  }
+
+  .booksy-modal-header {
+    padding-top: max(0.875rem, env(safe-area-inset-top));
+    padding-bottom: 0.875rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .booksy-modal-brand {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
   }
 
   .booksy-modal-subtitle {
     display: none;
   }
 }
+
 

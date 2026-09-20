@@ -23,7 +23,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  min-height: 180px;
+  height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,4 +120,15 @@
 .testimonials__dot--active {
   background: var(--color-near-black);
   transform: scale(1.25);
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .testimonials__carousel {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .testimonials__viewport {
+    height: 270px;
+  }
 }

@@ -78,7 +78,7 @@ export default function Hero() {
         </motion.span>
 
         <motion.h1 className="hero__title" variants={fadeUp}>
-          Grooming, Refined.
+          Grooming <br /> Refined
         </motion.h1>
 
         <motion.p className="hero__subtitle" variants={fadeUp}>

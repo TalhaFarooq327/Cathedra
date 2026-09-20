@@ -62,16 +62,18 @@ export default function Footer() {
               {EMAIL}
             </a>
             <a href={INSTAGRAM_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
-              Instagram (@cathedranyc)
+              Instagram
             </a>
             <a href={FACEBOOK_URL} className="footer__link" target="_blank" rel="noopener noreferrer">
-              Facebook (Cathedra NYC)
+              Facebook
             </a>
-            <div className="footer__book">
-              <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="sm">
-                Book Now
-              </Button>
-            </div>
+          </div>
+
+          {/* Book CTA */}
+          <div className="footer__book">
+            <Button href={BOOKSY_BOOKING_URL} variant="secondary" size="sm">
+              Book Now
+            </Button>
           </div>
         </div>
 
@@ -82,6 +84,7 @@ export default function Footer() {
           </p>
           <div className="footer__legal">
             <a href="#" className="footer__legal-link">Privacy Policy</a>
+            <span className="footer__legal-dot">•</span>
             <a href="#" className="footer__legal-link">Terms</a>
           </div>
         </div>
