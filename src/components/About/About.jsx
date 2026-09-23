@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
-import philosophyImg from '../../assets/images/philosophy-craft.jpg';
+import philosophyImg from '../../assets/images/philosophy-craft.webp';
 import './About.css';
 
 export default function About() {

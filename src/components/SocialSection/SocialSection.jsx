@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE, FACEBOOK_URL, INSTAGRAM_POST_IDS } from '../../config';
-import orig5 from '../../assets/images/cathedra-orig-5.jpg';
-import orig7 from '../../assets/images/cathedra-orig-7.jpg';
-import orig8 from '../../assets/images/cathedra-orig-8.jpg';
-import orig14 from '../../assets/images/cathedra-orig-14.jpg';
-import orig15 from '../../assets/images/cathedra-orig-15.jpg';
-import philosophyImg from '../../assets/images/philosophy-craft.jpg';
+import orig5 from '../../assets/images/cathedra-orig-5.webp';
+import orig7 from '../../assets/images/cathedra-orig-7.webp';
+import orig8 from '../../assets/images/cathedra-orig-8.webp';
+import orig14 from '../../assets/images/cathedra-orig-14.webp';
+import orig15 from '../../assets/images/cathedra-orig-15.webp';
+import philosophyImg from '../../assets/images/philosophy-craft.webp';
 import './SocialSection.css';
 
 const INSTAGRAM_POSTS = [

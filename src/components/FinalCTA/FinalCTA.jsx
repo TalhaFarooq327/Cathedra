@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { BOOKSY_BOOKING_URL } from '../../config';
 import Button from '../ui/Button';
-import finalCtaBg from '../../assets/images/final-cta-bg.png';
+import finalCtaBg from '../../assets/images/final-cta-bg.webp';
 import './FinalCTA.css';
 
 export default function FinalCTA() {

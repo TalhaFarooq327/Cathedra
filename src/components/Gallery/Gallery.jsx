@@ -1,27 +1,27 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
-import orig1 from '../../assets/images/cathedra-orig-1.jpg';
-import orig2 from '../../assets/images/cathedra-orig-2.jpg';
-import orig3 from '../../assets/images/cathedra-orig-3.jpg';
-import orig4 from '../../assets/images/cathedra-orig-4.jpg';
-import orig5 from '../../assets/images/cathedra-orig-5.jpg';
-import orig6 from '../../assets/images/cathedra-orig-6.jpg';
-import orig7 from '../../assets/images/cathedra-orig-7.jpg';
-import orig8 from '../../assets/images/cathedra-orig-8.jpg';
-import orig9 from '../../assets/images/cathedra-orig-9.jpg';
-import orig10 from '../../assets/images/cathedra-orig-10.jpg';
-import orig11 from '../../assets/images/cathedra-orig-11.jpg';
-import orig12 from '../../assets/images/cathedra-orig-12.jpg';
-import orig13 from '../../assets/images/cathedra-orig-13.jpg';
-import orig14 from '../../assets/images/cathedra-orig-14.jpg';
-import orig15 from '../../assets/images/cathedra-orig-15.jpg';
-import orig16 from '../../assets/images/cathedra-orig-16.jpg';
-import orig17 from '../../assets/images/cathedra-orig-17.jpg';
+import orig1 from '../../assets/images/cathedra-orig-1.webp';
+import orig2 from '../../assets/images/cathedra-orig-2.webp';
+import orig3 from '../../assets/images/cathedra-orig-3.webp';
+import orig4 from '../../assets/images/cathedra-orig-4.webp';
+import orig5 from '../../assets/images/cathedra-orig-5.webp';
+import orig6 from '../../assets/images/cathedra-orig-6.webp';
+import orig7 from '../../assets/images/cathedra-orig-7.webp';
+import orig8 from '../../assets/images/cathedra-orig-8.webp';
+import orig9 from '../../assets/images/cathedra-orig-9.webp';
+import orig10 from '../../assets/images/cathedra-orig-10.webp';
+import orig11 from '../../assets/images/cathedra-orig-11.webp';
+import orig12 from '../../assets/images/cathedra-orig-12.webp';
+import orig13 from '../../assets/images/cathedra-orig-13.webp';
+import orig14 from '../../assets/images/cathedra-orig-14.webp';
+import orig15 from '../../assets/images/cathedra-orig-15.webp';
+import orig16 from '../../assets/images/cathedra-orig-16.webp';
+import orig17 from '../../assets/images/cathedra-orig-17.webp';
 
-import toolsImg from '../../assets/images/gallery-tools.png';
-import chairImg from '../../assets/images/gallery-chair.png';
-import philosophyImg from '../../assets/images/philosophy-craft.jpg';
+import toolsImg from '../../assets/images/gallery-tools.webp';
+import chairImg from '../../assets/images/gallery-chair.webp';
+import philosophyImg from '../../assets/images/philosophy-craft.webp';
 import './Gallery.css';
 
 const GALLERY_IMAGES = [

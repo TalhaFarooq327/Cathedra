@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { BOOKSY_BOOKING_URL } from '../../config';
 import Button from '../ui/Button';
-import heroBg from '../../assets/images/hero-bg.png';
+import heroBg from '../../assets/images/hero-bg.webp';
 import logoGold from '../../assets/images/logo-gold-bright.png';
 import './Hero.css';
 
