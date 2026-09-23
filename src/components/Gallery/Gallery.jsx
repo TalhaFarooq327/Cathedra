@@ -71,15 +71,21 @@ export default function Gallery() {
   };
 
   useEffect(() => {
+    if (lightboxIndex === null) return;
+
     const handleKeyDown = (e) => {
-      if (lightboxIndex === null) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') prevLightbox();
-      if (e.key === 'ArrowRight') nextLightbox();
+      if (e.key === 'Escape') setLightboxIndex(null);
+      if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) => (prev === 0 ? filteredImages.length - 1 : prev - 1));
+      }
+      if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) => (prev === filteredImages.length - 1 ? 0 : prev + 1));
+      }
     };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxIndex, filteredImages]);
+  }, [lightboxIndex, filteredImages.length]);
 
   return (
     <section className="gallery section section--warm" id="gallery">

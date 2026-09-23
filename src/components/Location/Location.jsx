@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionHeading from '../ui/SectionHeading';
 import Button from '../ui/Button';
-import { ADDRESS, CITY_STATE_ZIP, GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED_URL, HOURS, PHONE, EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE, FACEBOOK_URL, FACEBOOK_HANDLE } from '../../config';
+import { ADDRESS, CITY_STATE_ZIP, GOOGLE_MAPS_URL, GOOGLE_MAPS_EMBED_URL, HOURS, PHONE, EMAIL } from '../../config';
 import './Location.css';
 
 export default function Location() {
@@ -51,7 +51,7 @@ export default function Location() {
               <p className="location__address-secondary">{CITY_STATE_ZIP}</p>
               <div className="location__address-cta">
                 <Button href={GOOGLE_MAPS_URL} variant="ghost" size="sm">
-                  Get Directions →
+                  Get Directions
                 </Button>
               </div>
             </div>

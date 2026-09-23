@@ -43,12 +43,12 @@ export default function About() {
                 Cathedra is a private grooming sanctuary in the heart of New York City. We believe that grooming is an essential ritual that should be executed with surgical precision, uncompromising attention to detail, and a deep respect for individual style.
               </p>
               <p>
-                Located in suite 938 on Varick Street, our NYC studio offers an intimate environment designed for modern gentlemen who demand excellence. From tailored scissor work to traditional hot-towel beard architecture, every session is crafted exclusively for you.
+                Located in suite 938 on Varick Street, our NYC studio offers an intimate environment designed for modern gentlemen who demand excellence. From flawless clipper fades, razor sharp lines to tailored gentelman scissor cuts.
               </p>
             </div>
 
             <Button href="#experience" variant="dark" size="md">
-              Discover The Experience →
+              Discover The Experience
             </Button>
           </motion.div>
         </div>

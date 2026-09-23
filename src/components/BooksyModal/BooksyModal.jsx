@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { BOOKSY_WIDGET_SCRIPT } from '../../config';
 import './BooksyModal.css';
 
 const BOOKSY_IFRAME_URL = 'https://booksy.com/widget/index.html?id=231737&country=us&lang=en&mode=dialog&theme=default';
