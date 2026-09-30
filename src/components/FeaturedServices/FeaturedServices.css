@@ -47,6 +47,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .flash-banner__ambient-glow {
@@ -137,12 +139,13 @@
 
 .flash-banner__content {
   flex: 1;
+  min-width: 0;
   max-width: 540px;
 }
 
 .flash-banner__title {
   font-family: var(--font-heading, serif);
-  font-size: var(--text-3xl, 2rem);
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.5rem;
@@ -162,6 +165,8 @@
   font-size: var(--text-base, 0.95rem);
   color: #a5a5a5;
   line-height: 1.6;
+  max-width: 100%;
+  width: 100%;
 }
 
 .flash-banner__desc strong {
@@ -449,6 +454,92 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
+  /* Stack flash banner body on tablet */
+  .flash-banner__body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .flash-banner__content {
+    max-width: 100%;
+  }
+
+  .flash-banner__timer-card {
+    width: 100%;
+    align-self: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+
+  .flash-banner__timer-grid {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-services__flash-banner {
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 3rem;
+    gap: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .flash-banner__header {
+    gap: 0.5rem;
+  }
+
+  .flash-banner__badge-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+
+  .flash-banner__validity {
+    font-size: 0.72rem;
+  }
+
+  .flash-banner__body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .flash-banner__content {
+    max-width: 100%;
+  }
+
+  .flash-banner__timer-card {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1rem;
+  }
+
+  .flash-banner__footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .flash-banner__meta {
+    justify-content: center;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .flash-banner__action {
+    width: 100%;
+  }
+
+  .flash-banner__action a,
+  .flash-banner__action button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 640px) {
@@ -456,24 +547,101 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   .featured-services__menu-container {
     padding: 2rem 1.25rem;
   }
+
   .featured-services__menu-item {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .featured-services__item-name,
   .featured-services__item-desc {
     white-space: normal;
   }
+
   .featured-services__item-action {
     width: 100%;
     margin-top: 0.75rem;
   }
+
   .featured-services__item-action a,
   .featured-services__item-action button {
     width: 100%;
     text-align: center;
+  }
+
+  /* Timer digit sizing for small phones */
+  .flash-timer-num {
+    font-size: 1.15rem;
+  }
+
+  .flash-timer-box {
+    min-width: 40px;
+    padding: 0.35rem 0.4rem;
+  }
+
+  .flash-timer-colon {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .flash-banner__timer-grid {
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-services__flash-banner {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+  }
+
+  .flash-banner__header {
+    padding-bottom: 0.75rem;
+  }
+
+  .flash-banner__badge {
+    padding: 0.28rem 0.6rem;
+    gap: 0.35rem;
+  }
+
+  .flash-banner__badge-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .flash-banner__title {
+    font-size: 1.3rem;
+  }
+
+  .flash-banner__desc {
+    font-size: 0.85rem;
+  }
+
+  .flash-timer-num {
+    font-size: 1.05rem;
+  }
+
+  .flash-timer-box {
+    min-width: 36px;
+    padding: 0.3rem 0.35rem;
+    border-radius: 6px;
+  }
+
+  .flash-timer-unit {
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+  }
+
+  .flash-timer-colon {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .flash-banner__timer-grid {
+    gap: 0.25rem;
   }
 }

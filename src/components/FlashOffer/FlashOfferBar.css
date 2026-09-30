@@ -1,0 +1,152 @@
+/* ═══════════════════════════════════════════════════════════
+   Cathedra NYC — Top Announcement Flash Offer Bar
+   ═══════════════════════════════════════════════════════════ */
+
+.flash-offer-bar {
+  background: linear-gradient(90deg, #111111 0%, #1c1813 50%, #111111 100%);
+  border-bottom: 1px solid rgba(200, 169, 126, 0.4);
+  color: #ffffff;
+  font-family: var(--font-body);
+  position: relative;
+  z-index: 101;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.flash-offer-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem var(--container-padding, 2rem);
+  gap: 1rem;
+}
+
+.flash-offer-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+}
+
+.flash-offer-bar__badge {
+  background: rgba(200, 169, 126, 0.2);
+  border: 1px solid rgba(200, 169, 126, 0.45);
+  color: #e2c499;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.flash-offer-bar__text {
+  color: #dcdcdc;
+  letter-spacing: 0.02em;
+}
+
+.flash-offer-bar__gold {
+  color: var(--color-accent, #c8a97e);
+  font-weight: 700;
+}
+
+.flash-offer-bar__center {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(200, 169, 126, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+}
+
+.flash-offer-bar__timer-icon {
+  font-size: 0.8rem;
+  color: var(--color-accent, #c8a97e);
+}
+
+.flash-offer-bar__timer-digits {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.flash-offer-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flash-offer-bar__cta {
+  background: var(--color-accent, #c8a97e);
+  color: #0a0a0a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  transition: all var(--transition-fast, 200ms ease);
+  white-space: nowrap;
+}
+
+.flash-offer-bar__cta:hover {
+  background: #d4b88f;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+.flash-offer-bar__close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast, 200ms ease);
+}
+
+.flash-offer-bar__close:hover {
+  color: #ffffff;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS FOR FLASH OFFER BAR
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 992px) {
+  .flash-offer-bar__text {
+    font-size: 0.78rem;
+  }
+  .flash-offer-bar__timer-digits {
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .flash-offer-bar__inner {
+    padding: 0.45rem 1rem;
+  }
+  .flash-offer-bar__center {
+    display: none; /* Hide timer ticker on tablet to prevent crowding */
+  }
+}
+
+@media (max-width: 540px) {
+  .flash-offer-bar__text {
+    display: none; /* Hide long text on small mobile */
+  }
+  .flash-offer-bar__badge {
+    font-size: 0.65rem;
+    padding: 0.18rem 0.5rem;
+  }
+  .flash-offer-bar__cta {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.65rem;
+  }
+}
