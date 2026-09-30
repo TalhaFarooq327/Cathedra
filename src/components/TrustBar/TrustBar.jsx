@@ -13,8 +13,8 @@ const items = [
     icon: '✦',
   },
   {
-    label: '$15 Off 2nd Visit',
-    sublabel: 'Automatic Booksy reward',
+    label: 'Private Barber Suite',
+    sublabel: 'Dedicated 1-on-1 sessions',
     icon: '★',
   },
   {

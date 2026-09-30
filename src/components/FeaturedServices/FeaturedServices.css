@@ -34,69 +34,256 @@
   margin-bottom: 3.5rem;
 }
 
-/* ─── Loyalty Banner ──────────────────────────────────── */
-.featured-services__loyalty-banner {
-  background: var(--color-near-black, #111111);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: var(--radius-lg);
-  padding: 2.25rem 2.5rem;
-  margin-bottom: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+/* ─── Redesigned Flash Offer Banner ─────────────────────── */
+.featured-services__flash-banner {
   position: relative;
+  background: linear-gradient(145deg, #161616 0%, #0d0d0d 100%);
+  border: 1px solid rgba(200, 169, 126, 0.35);
+  border-radius: var(--radius-lg, 16px);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 4.5rem;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35), 0 0 35px rgba(200, 169, 126, 0.08);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
 }
 
-.featured-services__loyalty-banner::before {
-  content: '';
+.flash-banner__ambient-glow {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(200, 169, 126, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+}
+
+.flash-banner__shimmer-line {
   position: absolute;
   top: 0;
   left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--color-gold, #c5a059);
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold, #c5a059) 50%, transparent 100%);
+  opacity: 0.85;
 }
 
-.loyalty-banner__badge {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+/* Header */
+.flash-banner__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 1rem;
+}
+
+.flash-banner__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(200, 169, 126, 0.12);
+  border: 1px solid rgba(200, 169, 126, 0.35);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.flash-banner__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #e2c499;
+  box-shadow: 0 0 8px #e2c499;
+  animation: pulseDot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.flash-banner__badge-icon {
+  font-size: 0.85rem;
   color: var(--color-gold, #c5a059);
+}
+
+.flash-banner__badge-text {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #e2c499;
+  text-transform: uppercase;
+}
+
+.flash-banner__validity {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+}
+
+/* Body */
+.flash-banner__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.flash-banner__content {
+  flex: 1;
+  max-width: 540px;
+}
+
+.flash-banner__title {
+  font-family: var(--font-heading, serif);
+  font-size: var(--text-3xl, 2rem);
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.flash-banner__highlight {
+  color: var(--color-gold, #c5a059);
+  background: linear-gradient(135deg, #f3e5ca 0%, #c5a059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.flash-banner__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-base, 0.95rem);
+  color: #a5a5a5;
+  line-height: 1.6;
+}
+
+.flash-banner__desc strong {
+  color: #ffffff;
+}
+
+/* Timer Card */
+.flash-banner__timer-card {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(200, 169, 126, 0.25);
+  border-radius: var(--radius-md, 12px);
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.flash-banner__timer-header {
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-.loyalty-banner__icon {
-  font-size: 0.85rem;
+.flash-banner__timer-icon {
+  font-size: 0.8rem;
+  color: var(--color-gold, #c5a059);
 }
 
-.loyalty-banner__title {
-  font-family: var(--font-heading, serif);
-  font-size: var(--text-2xl);
-  color: #ffffff;
-  margin-bottom: 0.35rem;
-}
-
-.loyalty-banner__desc {
+.flash-banner__timer-title {
   font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--color-light-gray, #a0a0a0);
-  line-height: 1.6;
-  max-width: 580px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--color-gold, #c5a059);
+  text-transform: uppercase;
 }
 
-.loyalty-banner__desc strong {
+.flash-banner__timer-grid {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flash-timer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.9) 0%, rgba(15, 15, 15, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  min-width: 48px;
+  padding: 0.45rem 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.flash-timer-num {
+  font-family: var(--font-heading, serif);
+  font-size: 1.45rem;
+  font-weight: 700;
   color: #ffffff;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 10px rgba(200, 169, 126, 0.3);
 }
 
-.loyalty-banner__action {
+.flash-timer-unit {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #888888;
+  margin-top: 0.25rem;
+}
+
+.flash-timer-colon {
+  font-family: var(--font-heading, serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-gold, #c5a059);
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+}
+
+/* Footer */
+.flash-banner__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.flash-banner__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #bbbbbb;
+}
+
+.flash-banner__meta-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(200, 169, 126, 0.2);
+  color: var(--color-gold, #c5a059);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.flash-banner__action {
   flex-shrink: 0;
 }
 
@@ -268,20 +455,6 @@
   .featured-services__grid {
     grid-template-columns: 1fr;
     gap: 1rem;
-  }
-  .featured-services__loyalty-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.75rem 1.25rem;
-    gap: 1.25rem;
-  }
-  .loyalty-banner__action {
-    width: 100%;
-  }
-  .loyalty-banner__action a,
-  .loyalty-banner__action button {
-    width: 100%;
-    justify-content: center;
   }
   .featured-services__menu-container {
     padding: 2rem 1.25rem;
