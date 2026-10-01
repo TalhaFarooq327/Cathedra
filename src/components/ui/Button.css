@@ -94,6 +94,7 @@
 .btn--accent:hover {
   background-color: var(--color-accent-light);
   border-color: var(--color-accent-light);
+  color: var(--color-black);
 }
 
 /* ─── Dark Button (for Light Sections) ────────────────── */

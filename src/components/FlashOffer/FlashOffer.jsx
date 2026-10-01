@@ -27,7 +27,7 @@ export default function FlashOffer({
   targetDate = DEFAULT_TARGET_DATE,
   discountPercent = '10%',
   promoCode = 'FLASH10',
-  validityText = 'Valid Through Oct 11',
+  validityText = 'Valid Through Oct 15',
   className = '',
 }) {
   const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(targetDate));
@@ -107,62 +107,62 @@ export default function FlashOffer({
           </div>
         </div>
 
-        {/* Live Countdown Timer Block */}
-        <div className="flash-offer-card__timer-box">
-          <div className="flash-offer-card__timer-head">
-            <span className="flash-offer-card__timer-icon" aria-hidden="true">⏱</span>
-            <span className="flash-offer-card__timer-label">OFFER EXPIRES IN</span>
+        {/* Live Countdown Timer Block + CTA stacked in right column */}
+        <div className="flash-offer-card__right-col">
+          <div className="flash-offer-card__timer-box">
+            <div className="flash-offer-card__timer-head">
+              <span className="flash-offer-card__timer-icon" aria-hidden="true">⏱</span>
+              <span className="flash-offer-card__timer-label">OFFER EXPIRES IN</span>
+            </div>
+
+            <div className="flash-offer-card__timer-units">
+              <div className="flash-timer-unit">
+                <div className="flash-timer-digit">
+                  {String(timeLeft.days).padStart(2, '0')}
+                </div>
+                <span className="flash-timer-label">DAYS</span>
+              </div>
+
+              <span className="flash-timer-divider">:</span>
+
+              <div className="flash-timer-unit">
+                <div className="flash-timer-digit">
+                  {String(timeLeft.hours).padStart(2, '0')}
+                </div>
+                <span className="flash-timer-label">HOURS</span>
+              </div>
+
+              <span className="flash-timer-divider">:</span>
+
+              <div className="flash-timer-unit">
+                <div className="flash-timer-digit">
+                  {String(timeLeft.minutes).padStart(2, '0')}
+                </div>
+                <span className="flash-timer-label">MINS</span>
+              </div>
+
+              <span className="flash-timer-divider">:</span>
+
+              <div className="flash-timer-unit">
+                <div className="flash-timer-digit">
+                  {String(timeLeft.seconds).padStart(2, '0')}
+                </div>
+                <span className="flash-timer-label">SECS</span>
+              </div>
+            </div>
           </div>
 
-          <div className="flash-offer-card__timer-units">
-            <div className="flash-timer-unit">
-              <div className="flash-timer-digit">
-                {String(timeLeft.days).padStart(2, '0')}
-              </div>
-              <span className="flash-timer-label">DAYS</span>
-            </div>
-
-            <span className="flash-timer-divider">:</span>
-
-            <div className="flash-timer-unit">
-              <div className="flash-timer-digit">
-                {String(timeLeft.hours).padStart(2, '0')}
-              </div>
-              <span className="flash-timer-label">HOURS</span>
-            </div>
-
-            <span className="flash-timer-divider">:</span>
-
-            <div className="flash-timer-unit">
-              <div className="flash-timer-digit">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </div>
-              <span className="flash-timer-label">MINS</span>
-            </div>
-
-            <span className="flash-timer-divider">:</span>
-
-            <div className="flash-timer-unit">
-              <div className="flash-timer-digit">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </div>
-              <span className="flash-timer-label">SECS</span>
-            </div>
-          </div>
+          <Button href={BOOKSY_BOOKING_URL} variant="accent" size="lg" className="flash-offer-card__cta-btn">
+            Claim {discountPercent} Discount & Book Now
+          </Button>
         </div>
       </div>
 
-      {/* Footer Bar: Meta Guarantee & CTA Action */}
+      {/* Footer Bar: Meta Guarantee */}
       <div className="flash-offer-card__footer">
         <div className="flash-offer-card__meta">
           <span className="flash-offer-card__check-icon" aria-hidden="true">✓</span>
           <span>Auto-applied at Booksy checkout or mention code at studio</span>
-        </div>
-
-        <div className="flash-offer-card__action">
-          <Button href={BOOKSY_BOOKING_URL} variant="accent" size="lg">
-            Claim {discountPercent} Discount & Book Now
-          </Button>
         </div>
       </div>
     </motion.div>
