@@ -4,8 +4,8 @@ import Button from '../ui/Button';
 import { BOOKSY_BOOKING_URL } from '../../config';
 import './FlashOffer.css';
 
-// Flash promo target date (Default: Oct 11, 2026 23:59:59)
-const DEFAULT_TARGET_DATE = new Date('2026-10-11T23:59:59').getTime();
+// Flash promo target date (Default: Oct 15, 2026 23:59:59)
+const DEFAULT_TARGET_DATE = new Date('2026-10-15T23:59:59').getTime();
 
 const calculateTimeLeft = (targetDate) => {
   const now = new Date().getTime();

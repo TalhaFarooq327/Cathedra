@@ -53,12 +53,14 @@
 .flash-offer-bar__center {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(200, 169, 126, 0.25);
   padding: 0.25rem 0.75rem;
   border-radius: 999px;
   font-size: 0.78rem;
+  min-width: 185px;
 }
 
 .flash-offer-bar__timer-icon {
@@ -90,6 +92,11 @@
   text-transform: uppercase;
   transition: all var(--transition-fast, 200ms ease);
   white-space: nowrap;
+  min-width: 185px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flash-offer-bar__cta:hover {
