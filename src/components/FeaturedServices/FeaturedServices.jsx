@@ -7,8 +7,8 @@ import { FEATURED_SERVICES, SERVICE_CATEGORIES, ALL_SERVICES } from '../../data/
 import { BOOKSY_BOOKING_URL } from '../../config';
 import './FeaturedServices.css';
 
-// Promotion expires on October 15th at 23:59:59
-const PROMO_END_DATE = new Date('2026-10-15T23:59:59').getTime();
+// Promotion expires on October 18th at 23:59:59
+const PROMO_END_DATE = new Date('2026-10-18T23:59:59').getTime();
 
 const calculateTimeLeft = () => {
   const difference = PROMO_END_DATE - new Date().getTime();
@@ -82,7 +82,7 @@ export default function FeaturedServices() {
                 <span className="flash-banner__badge-icon">⚡</span>
                 <span className="flash-banner__badge-text">LIMITED TIME FLASH OFFER</span>
               </div>
-              <span className="flash-banner__validity">Valid Through Oct 15</span>
+              <span className="flash-banner__validity">Valid Through Oct 18</span>
             </div>
 
             <div className="flash-banner__body">

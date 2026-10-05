@@ -5,7 +5,7 @@ import { BOOKSY_BOOKING_URL } from '../../config';
 import './FlashOffer.css';
 
 // Flash promo target date (Default: Oct 15, 2026 23:59:59)
-const DEFAULT_TARGET_DATE = new Date('2026-10-15T23:59:59').getTime();
+const DEFAULT_TARGET_DATE = new Date('2026-10-18T23:59:59').getTime();
 
 const calculateTimeLeft = (targetDate) => {
   const now = new Date().getTime();
@@ -27,7 +27,7 @@ export default function FlashOffer({
   targetDate = DEFAULT_TARGET_DATE,
   discountPercent = '10%',
   promoCode = 'FLASH10',
-  validityText = 'Valid Through Oct 15',
+  validityText = 'Valid Through Oct 18',
   className = '',
 }) {
   const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(targetDate));
