@@ -31,11 +31,23 @@ export default function BooksyModal() {
     };
     window.addEventListener('keydown', handleKeyDown);
 
-    // Listen for close postMessages sent from inside Booksy iframe
+    // ── Listen for postMessages from Booksy iframe ───────────────────────────
     const handleMessage = (e) => {
-      if (!e.data) return;
+      if (!e.data || typeof e.origin !== 'string' || !e.origin.includes('booksy.com')) return;
+
+      const events = e.data?.events;
+
+      // ✅ Booking confirmed — Booksy sends goToUrl with an appointment link
+      // Detected via: { events: { goToUrl: { url: "https://booksy.com/en-us/account/appointment/..." } } }
+      if (events?.goToUrl?.url?.includes('/appointment/')) {
+        setIsOpen(false);
+        window.location.href = '/thank-you';
+        return;
+      }
+
+      // Close modal when Booksy sends a close event
       if (
-        e.data.events?.close ||
+        events?.close ||
         e.data.name === 'close' ||
         e.data === 'close' ||
         e.data.action === 'close'

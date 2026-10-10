@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import TrustBar from './components/TrustBar/TrustBar';
@@ -13,8 +14,9 @@ import FinalCTA from './components/FinalCTA/FinalCTA';
 import Footer from './components/Footer/Footer';
 import MobileBookBar from './components/MobileBookBar/MobileBookBar';
 import BooksyModal from './components/BooksyModal/BooksyModal';
+import ThankYou from './components/ThankYou/ThankYou';
 
-export default function App() {
+function HomePage() {
   return (
     <div className="app">
       <Navbar />
@@ -37,3 +39,13 @@ export default function App() {
     </div>
   );
 }
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/thank-you" element={<ThankYou />} />
+    </Routes>
+  );
+}
+
