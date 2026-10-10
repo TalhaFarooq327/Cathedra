@@ -33,8 +33,7 @@
     <link rel="dns-prefetch" href="https://booksy.com" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- Meta Pixel Base Code -->
-    <!-- IMPORTANT: Replace YOUR_PIXEL_ID with the actual Meta Pixel ID from Meta Events Manager -->
+    <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -44,17 +43,18 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('init', '1462852605691255');
       fbq('track', 'PageView');
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
-    </noscript>
-    <!-- End Meta Pixel Base Code -->
+    <!-- End Meta Pixel Code -->
   </head>
   <body>
     <div id="root"></div>
+    <!-- Meta Pixel noscript fallback -->
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1462852605691255&ev=PageView&noscript=1" />
+    </noscript>
     <!-- Booksy Widget Integration -->
     <script type="text/javascript" src="https://booksy.com/widget/code.js?id=231737&country=us&lang=en"></script>
     <script type="module" src="/src/main.jsx"></script>
