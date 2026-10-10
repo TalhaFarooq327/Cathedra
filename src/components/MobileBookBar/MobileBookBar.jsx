@@ -1,11 +1,16 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
 import { BOOKSY_BOOKING_URL } from '../../config';
+import { openBooksyWidget } from '../../utils/booksy';
 import './MobileBookBar.css';
 
 export default function MobileBookBar() {
   const { scrollY } = useScrollPosition();
   const isVisible = scrollY > 600;
+
+  const handleClick = (e) => {
+    openBooksyWidget(e);
+  };
 
   return (
     <AnimatePresence>
@@ -19,9 +24,8 @@ export default function MobileBookBar() {
         >
           <a
             href={BOOKSY_BOOKING_URL}
+            onClick={handleClick}
             className="mobile-book-bar__btn"
-            target={BOOKSY_BOOKING_URL.startsWith('http') ? '_blank' : undefined}
-            rel={BOOKSY_BOOKING_URL.startsWith('http') ? 'noopener noreferrer' : undefined}
           >
             Book Appointment
           </a>

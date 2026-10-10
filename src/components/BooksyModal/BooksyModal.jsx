@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './BooksyModal.css';
 
 const BOOKSY_IFRAME_URL = 'https://booksy.com/widget/index.html?id=231737&country=us&lang=en&mode=dialog&theme=default';
 
 export default function BooksyModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Strict scroll lock on background page when modal is open
   useEffect(() => {
@@ -36,12 +38,23 @@ export default function BooksyModal() {
       if (!e.data || typeof e.origin !== 'string' || !e.origin.includes('booksy.com')) return;
 
       const events = e.data?.events;
+      const targetUrl = events?.goToUrl?.url || e.data?.url || e.data?.location || '';
+      const dataStr = typeof e.data === 'string' ? e.data : JSON.stringify(e.data || {});
 
-      // ✅ Booking confirmed — Booksy sends goToUrl with an appointment link
-      // Detected via: { events: { goToUrl: { url: "https://booksy.com/en-us/account/appointment/..." } } }
-      if (events?.goToUrl?.url?.includes('/appointment/')) {
+      // ✅ Booking confirmed — Booksy sends goToUrl or confirmation event
+      const isConfirmed =
+        targetUrl.includes('/appointment/') ||
+        targetUrl.includes('/booking/') ||
+        targetUrl.includes('thank-you') ||
+        dataStr.includes('/appointment/') ||
+        dataStr.includes('booking_success') ||
+        dataStr.includes('bookingConfirmed') ||
+        events?.bookingSuccess ||
+        events?.confirmed;
+
+      if (isConfirmed) {
         setIsOpen(false);
-        window.location.href = '/thank-you';
+        navigate('/thank-you');
         return;
       }
 
@@ -62,7 +75,7 @@ export default function BooksyModal() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('message', handleMessage);
     };
-  }, []);
+  }, [navigate]);
 
   const closeModal = () => setIsOpen(false);
 
