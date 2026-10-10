@@ -70,14 +70,13 @@ export default function FlashOffer({
       <div className="flash-offer-card__ambient-glow" aria-hidden="true" />
       <div className="flash-offer-card__shimmer" aria-hidden="true" />
 
-      {/* Header Bar: Pulsing Live Badge & Validity */}
+      {/* Header Bar: Pulsing Live Badge */}
       <div className="flash-offer-card__header">
         <div className="flash-offer-card__badge">
           <span className="flash-offer-card__pulse-dot" aria-hidden="true" />
           <span className="flash-offer-card__icon" aria-hidden="true">⚡</span>
           <span className="flash-offer-card__badge-text">LIMITED TIME FLASH OFFER</span>
         </div>
-        <span className="flash-offer-card__validity">{validityText}</span>
       </div>
 
       {/* Main Content Body: Offer Details & Countdown Timer */}

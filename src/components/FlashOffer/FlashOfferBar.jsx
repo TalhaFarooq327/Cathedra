@@ -2,41 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BOOKSY_BOOKING_URL } from '../../config';
 import { openBooksyWidget } from '../../utils/booksy';
+import { getActivePhaseTarget, calculateTimeLeft } from '../../utils/flashOfferSchedule';
 import './FlashOfferBar.css';
-
-// ── Flash Offer Phase Schedule ────────────────────────────────────────────────
-// The Booksy offer runs Mon Oct 12 – Sun Oct 19.
-// The website timer resets across 3 phases to create urgency:
-//   Phase 1: Oct 12 00:00 → Oct 14 00:00  (2 days)
-//   Phase 2: Oct 14 00:00 → Oct 16 00:00  (2 days) ← resets timer
-//   Phase 3: Oct 16 00:00 → Oct 19 23:59  (3 days) ← resets timer
-//   After  : Oct 20 00:00 → bar disappears permanently
-const PHASES = [
-  { start: new Date('2026-10-12T00:00:00').getTime(), end: new Date('2026-10-14T00:00:00').getTime() },
-  { start: new Date('2026-10-14T00:00:00').getTime(), end: new Date('2026-10-16T00:00:00').getTime() },
-  { start: new Date('2026-10-16T00:00:00').getTime(), end: new Date('2026-10-19T23:59:59').getTime() },
-];
-
-/**
- * Returns the target end-time for the current active phase,
- * or null if we're before the offer starts or after it ends.
- */
-const getActivePhaseTarget = () => {
-  const now = Date.now();
-  const active = PHASES.find(p => now >= p.start && now < p.end);
-  return active ? active.end : null;
-};
-
-const calculateTimeLeft = (targetMs) => {
-  const difference = targetMs - Date.now();
-  if (difference <= 0) return null;
-  return {
-    days:    Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours:   Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  };
-};
 
 export default function FlashOfferBar() {
   const [isVisible, setIsVisible] = useState(true);

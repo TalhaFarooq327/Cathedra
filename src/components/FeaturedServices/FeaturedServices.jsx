@@ -5,36 +5,28 @@ import ServiceCard from '../ServiceCard/ServiceCard';
 import Button from '../ui/Button';
 import { FEATURED_SERVICES, SERVICE_CATEGORIES, ALL_SERVICES } from '../../data/services';
 import { BOOKSY_BOOKING_URL } from '../../config';
+import { getActivePhaseTarget, calculateTimeLeft } from '../../utils/flashOfferSchedule';
 import './FeaturedServices.css';
-
-// Promotion expires on October 18th at 23:59:59
-const PROMO_END_DATE = new Date('2026-10-18T23:59:59').getTime();
-
-const calculateTimeLeft = () => {
-  const difference = PROMO_END_DATE - new Date().getTime();
-  if (difference <= 0) {
-    return null;
-  }
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  };
-};
 
 export default function FeaturedServices() {
   const [activeTab, setActiveTab] = useState('all');
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
+  const [targetMs, setTargetMs]   = useState(() => getActivePhaseTarget());
+  const [timeLeft, setTimeLeft]   = useState(() => {
+    const t = getActivePhaseTarget();
+    return t ? calculateTimeLeft(t) : null;
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const remaining = calculateTimeLeft();
-      setTimeLeft(remaining);
+      const newTarget = getActivePhaseTarget();
+      if (newTarget !== targetMs) {
+        setTargetMs(newTarget);
+      }
+      setTimeLeft(newTarget ? calculateTimeLeft(newTarget) : null);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [targetMs]);
 
   return (
     <section className="featured-services section section--light" id="services">
@@ -82,7 +74,6 @@ export default function FeaturedServices() {
                 <span className="flash-banner__badge-icon">⚡</span>
                 <span className="flash-banner__badge-text">LIMITED TIME FLASH OFFER</span>
               </div>
-              <span className="flash-banner__validity">Valid Through Oct 18</span>
             </div>
 
             <div className="flash-banner__body">
