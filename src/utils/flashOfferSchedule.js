@@ -12,9 +12,9 @@
  */
 
 export const PHASES = [
-  { id: 1, end: new Date('2026-10-14T00:00:00').getTime(), label: 'Phase 1: Ends Oct 14' },
-  { id: 2, end: new Date('2026-10-16T00:00:00').getTime(), label: 'Phase 2: Ends Oct 16' },
-  { id: 3, end: new Date('2026-10-18T23:59:59').getTime(), label: 'Phase 3: Ends Oct 18' },
+  { id: 1, end: new Date('2026-10-14T00:00:00-04:00').getTime(), label: 'Phase 1: Ends Oct 14' },
+  { id: 2, end: new Date('2026-10-16T00:00:00-04:00').getTime(), label: 'Phase 2: Ends Oct 16' },
+  { id: 3, end: new Date('2026-10-18T23:59:59-04:00').getTime(), label: 'Phase 3: Ends Oct 18' },
 ];
 
 /**

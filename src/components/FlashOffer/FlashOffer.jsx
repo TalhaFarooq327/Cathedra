@@ -1,83 +1,25 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import { BOOKSY_BOOKING_URL } from '../../config';
+import { getActivePhaseTarget, calculateTimeLeft } from '../../utils/flashOfferSchedule';
 import './FlashOffer.css';
-
-// Returns the UTC timestamp for end-of-day on the last day of the current
-// offer window, expressed in New York time (America/New_York, DST-aware).
-// Schedule: Mon–Tue → expires Tue 23:59:59 NY
-//           Wed–Thu → expires Thu 23:59:59 NY
-//           Fri/Sat/Sun → expires Sun 23:59:59 NY
-const getOfferEndDateNY = () => {
-  const now = new Date();
-
-  // ── Step 1: Get NY UTC offset (4h for EDT, 5h for EST) ──────────────
-  // Intl.format() with just `hour` reliably returns a numeric hour string.
-  // No locale-string-to-Date parsing → no browser inconsistency.
-  const nyHourRaw = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/New_York',
-    hour: 'numeric',
-    hour12: false,
-  }).format(now);
-  const nyHour = parseInt(nyHourRaw, 10) % 24; // guard against "24" midnight edge case
-  const utcHour = now.getUTCHours();
-  let nyOffsetHours = utcHour - nyHour;
-  if (nyOffsetHours < 0) nyOffsetHours += 24; // handle midnight boundary
-  if (nyOffsetHours > 12) nyOffsetHours = 4;  // sanity fallback → EDT
-
-  const nyOffsetMs = nyOffsetHours * 3_600_000;
-
-  // ── Step 2: Get current NY day-of-week via UTC arithmetic ───────────
-  // Subtract the offset from UTC so UTC methods behave as NY methods.
-  const nyNow = new Date(now.getTime() - nyOffsetMs);
-  const dow = nyNow.getUTCDay(); // 0=Sun 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat
-
-  // ── Step 3: Days until end of offer window ───────────────────────────
-  let daysUntilEnd;
-  if (dow === 1 || dow === 2)      daysUntilEnd = 2 - dow;                // Mon/Tue → Tue
-  else if (dow === 3 || dow === 4) daysUntilEnd = 4 - dow;                // Wed/Thu → Thu
-  else                             daysUntilEnd = dow === 0 ? 0 : 7 - dow; // Fri/Sat/Sun → Sun
-
-  // ── Step 4: Build target UTC timestamp ──────────────────────────────
-  // 23:59:59 NY = (target date 23:59:59 UTC) + nyOffsetMs
-  const targetNY = new Date(nyNow.getTime());
-  targetNY.setUTCDate(targetNY.getUTCDate() + daysUntilEnd);
-
-  return Date.UTC(
-    targetNY.getUTCFullYear(),
-    targetNY.getUTCMonth(),
-    targetNY.getUTCDate(),
-    23, 59, 59, 999,
-  ) + nyOffsetMs;
-};
-
-
-
-const calculateTimeLeft = () => {
-  const difference = getOfferEndDateNY() - Date.now();
-  if (difference <= 0) return null;
-
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  };
-};
 
 export default function FlashOffer({
   discountPercent = '10%',
   promoCode = 'FLASH10',
-  validityText = 'Valid Through Oct 18',
   className = '',
 }) {
-  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const t = getActivePhaseTarget();
+    return t ? calculateTimeLeft(t) : null;
+  });
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const t = getActivePhaseTarget();
+      setTimeLeft(t ? calculateTimeLeft(t) : null);
     }, 1000);
 
     return () => clearInterval(timer);
@@ -90,7 +32,6 @@ export default function FlashOffer({
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     }).catch(() => {
-      // Fallback if clipboard API restricted
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     });
@@ -193,7 +134,7 @@ export default function FlashOffer({
           </div>
 
           <Button href={BOOKSY_BOOKING_URL} variant="accent" size="lg" className="flash-offer-card__cta-btn">
-            Claim {discountPercent} Discount & Book Now
+            Claim {discountPercent} Discount &amp; Book Now
           </Button>
         </div>
       </div>
