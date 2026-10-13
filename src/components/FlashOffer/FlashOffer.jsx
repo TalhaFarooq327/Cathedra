@@ -12,52 +12,46 @@ import './FlashOffer.css';
 const getOfferEndDateNY = () => {
   const now = new Date();
 
-  // 1. Extract current NY date components reliably via Intl API
-  const parts = new Intl.DateTimeFormat('en-US', {
+  // ── Step 1: Get NY UTC offset (4h for EDT, 5h for EST) ──────────────
+  // Intl.format() with just `hour` reliably returns a numeric hour string.
+  // No locale-string-to-Date parsing → no browser inconsistency.
+  const nyHourRaw = new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/New_York',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    weekday: 'short',
+    hour: 'numeric',
     hour12: false,
-  }).formatToParts(now);
+  }).format(now);
+  const nyHour = parseInt(nyHourRaw, 10) % 24; // guard against "24" midnight edge case
+  const utcHour = now.getUTCHours();
+  let nyOffsetHours = utcHour - nyHour;
+  if (nyOffsetHours < 0) nyOffsetHours += 24; // handle midnight boundary
+  if (nyOffsetHours > 12) nyOffsetHours = 4;  // sanity fallback → EDT
 
-  const get = (type) => parts.find((p) => p.type === type)?.value ?? '';
-  const nyYear  = parseInt(get('year'));
-  const nyMonth = parseInt(get('month')) - 1; // 0-indexed for Date constructor
-  const nyDay   = parseInt(get('day'));
-  const dowMap  = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-  const dow     = dowMap[get('weekday')];
+  const nyOffsetMs = nyOffsetHours * 3_600_000;
 
-  // 2. Days until end of current offer window
+  // ── Step 2: Get current NY day-of-week via UTC arithmetic ───────────
+  // Subtract the offset from UTC so UTC methods behave as NY methods.
+  const nyNow = new Date(now.getTime() - nyOffsetMs);
+  const dow = nyNow.getUTCDay(); // 0=Sun 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat
+
+  // ── Step 3: Days until end of offer window ───────────────────────────
   let daysUntilEnd;
   if (dow === 1 || dow === 2)      daysUntilEnd = 2 - dow;                // Mon/Tue → Tue
   else if (dow === 3 || dow === 4) daysUntilEnd = 4 - dow;                // Wed/Thu → Thu
   else                             daysUntilEnd = dow === 0 ? 0 : 7 - dow; // Fri/Sat/Sun → Sun
 
-  // 3. Build the target calendar date using arithmetic on NY date values
-  const targetDate = new Date(nyYear, nyMonth, nyDay + daysUntilEnd);
-  const ty = targetDate.getFullYear();
-  const tm = String(targetDate.getMonth() + 1).padStart(2, '0');
-  const td = String(targetDate.getDate()).padStart(2, '0');
+  // ── Step 4: Build target UTC timestamp ──────────────────────────────
+  // 23:59:59 NY = (target date 23:59:59 UTC) + nyOffsetMs
+  const targetNY = new Date(nyNow.getTime());
+  targetNY.setUTCDate(targetNY.getUTCDate() + daysUntilEnd);
 
-  // 4. Determine NY UTC offset on target date (handles EDT vs EST automatically).
-  //    Probe at UTC noon on that date — NY is always 7–8 AM at that point.
-  const noonUTC  = new Date(`${ty}-${tm}-${td}T12:00:00Z`);
-  const noonParts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/New_York',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).formatToParts(noonUTC);
-  const nyHour     = parseInt(noonParts.find((p) => p.type === 'hour')?.value   ?? '12');
-  const nyMin      = parseInt(noonParts.find((p) => p.type === 'minute')?.value ?? '0');
-  const nyOffsetMs = (12 * 60 - (nyHour * 60 + nyMin)) * 60 * 1000;
-  // e.g. EDT (UTC-4): 12:00 UTC = 08:00 NY → offset = (720-480)*60000 = 4h in ms
-
-  // 5. 23:59:59 in NY time = T23:59:59 UTC + NY offset (since NY is behind UTC)
-  return new Date(`${ty}-${tm}-${td}T23:59:59Z`).getTime() + nyOffsetMs;
+  return Date.UTC(
+    targetNY.getUTCFullYear(),
+    targetNY.getUTCMonth(),
+    targetNY.getUTCDate(),
+    23, 59, 59, 999,
+  ) + nyOffsetMs;
 };
+
 
 
 const calculateTimeLeft = () => {
