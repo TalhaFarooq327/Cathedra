@@ -26,11 +26,10 @@ const fadeUp = {
 };
 
 const imageReveal = {
-  hidden: { scale: 1.15, opacity: 0 },
+  hidden: { opacity: 0 },
   show: {
-    scale: 1,
     opacity: 1,
-    transition: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1.2, ease: 'easeOut' },
   },
 };
 
@@ -51,6 +50,7 @@ export default function Hero() {
         variants={imageReveal}
         initial="hidden"
         animate="show"
+        style={{ willChange: 'opacity' }}
       >
         <img
           src={heroBg}

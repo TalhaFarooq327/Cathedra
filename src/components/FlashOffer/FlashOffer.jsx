@@ -4,16 +4,65 @@ import Button from '../ui/Button';
 import { BOOKSY_BOOKING_URL } from '../../config';
 import './FlashOffer.css';
 
-// Flash promo target date (Default: Oct 15, 2026 23:59:59)
-const DEFAULT_TARGET_DATE = new Date('2026-10-18T23:59:59').getTime();
+// Returns the UTC timestamp for end-of-day on the last day of the current
+// offer window, expressed in New York time (America/New_York, DST-aware).
+// Schedule: Mon–Tue → expires Tue 23:59:59 NY
+//           Wed–Thu → expires Thu 23:59:59 NY
+//           Fri/Sat/Sun → expires Sun 23:59:59 NY
+const getOfferEndDateNY = () => {
+  const now = new Date();
 
-const calculateTimeLeft = (targetDate) => {
-  const now = new Date().getTime();
-  const difference = targetDate - now;
+  // 1. Extract current NY date components reliably via Intl API
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+    hour12: false,
+  }).formatToParts(now);
 
-  if (difference <= 0) {
-    return null;
-  }
+  const get = (type) => parts.find((p) => p.type === type)?.value ?? '';
+  const nyYear  = parseInt(get('year'));
+  const nyMonth = parseInt(get('month')) - 1; // 0-indexed for Date constructor
+  const nyDay   = parseInt(get('day'));
+  const dowMap  = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  const dow     = dowMap[get('weekday')];
+
+  // 2. Days until end of current offer window
+  let daysUntilEnd;
+  if (dow === 1 || dow === 2)      daysUntilEnd = 2 - dow;                // Mon/Tue → Tue
+  else if (dow === 3 || dow === 4) daysUntilEnd = 4 - dow;                // Wed/Thu → Thu
+  else                             daysUntilEnd = dow === 0 ? 0 : 7 - dow; // Fri/Sat/Sun → Sun
+
+  // 3. Build the target calendar date using arithmetic on NY date values
+  const targetDate = new Date(nyYear, nyMonth, nyDay + daysUntilEnd);
+  const ty = targetDate.getFullYear();
+  const tm = String(targetDate.getMonth() + 1).padStart(2, '0');
+  const td = String(targetDate.getDate()).padStart(2, '0');
+
+  // 4. Determine NY UTC offset on target date (handles EDT vs EST automatically).
+  //    Probe at UTC noon on that date — NY is always 7–8 AM at that point.
+  const noonUTC  = new Date(`${ty}-${tm}-${td}T12:00:00Z`);
+  const noonParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).formatToParts(noonUTC);
+  const nyHour     = parseInt(noonParts.find((p) => p.type === 'hour')?.value   ?? '12');
+  const nyMin      = parseInt(noonParts.find((p) => p.type === 'minute')?.value ?? '0');
+  const nyOffsetMs = (12 * 60 - (nyHour * 60 + nyMin)) * 60 * 1000;
+  // e.g. EDT (UTC-4): 12:00 UTC = 08:00 NY → offset = (720-480)*60000 = 4h in ms
+
+  // 5. 23:59:59 in NY time = T23:59:59 UTC + NY offset (since NY is behind UTC)
+  return new Date(`${ty}-${tm}-${td}T23:59:59Z`).getTime() + nyOffsetMs;
+};
+
+
+const calculateTimeLeft = () => {
+  const difference = getOfferEndDateNY() - Date.now();
+  if (difference <= 0) return null;
 
   return {
     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -24,23 +73,21 @@ const calculateTimeLeft = (targetDate) => {
 };
 
 export default function FlashOffer({
-  targetDate = DEFAULT_TARGET_DATE,
   discountPercent = '10%',
   promoCode = 'FLASH10',
   validityText = 'Valid Through Oct 18',
   className = '',
 }) {
-  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(targetDate));
+  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const remaining = calculateTimeLeft(targetDate);
-      setTimeLeft(remaining);
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, []);
 
   const handleCopyCode = (e) => {
     e.preventDefault();
